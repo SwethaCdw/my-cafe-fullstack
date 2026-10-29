@@ -74,20 +74,3 @@ To rebuild after changing code:
 ```bash
 docker compose up --build
 ```
-
-## 4. Demo flow for a training session
-
-1. Show `client/src/App.jsx`: React component and UI state.
-2. Show `server/index.js`: Express routes and sample in-memory data.
-3. Start the backend and test `/api/menu`.
-4. Start React and show menu data arriving from the API.
-5. Submit a demo order and inspect the API response / backend logs.
-6. Explain the frontend Dockerfile (build stage + NGINX runtime).
-7. Explain the backend Dockerfile (Node runtime + dependencies).
-8. Run `docker compose up --build` and show both services running.
-9. Show port mapping: host `8080` → frontend container `80`. The backend port `4000` is not published to the host in Compose; the frontend proxy reaches it over the internal Compose network.
-
-## Notes
-
-- Orders are stored in memory only, so they reset when the backend restarts. This keeps the demo simple; a real app would use a database.
-- This is a learning sample, not a production-ready ordering system.
