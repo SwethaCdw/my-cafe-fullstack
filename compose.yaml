@@ -1,19 +1,21 @@
 services:
+  # Backend service
   server:
     build:
-      context: ./server
+      context: ./server  # Path to the backend Dockerfile
     environment:
-      NODE_ENV: production
-      PORT: 4000
+      NODE_ENV: production  # Set the environment to production
+      PORT: 4000  # Backend application port
     expose:
-      - "4000"
-    restart: unless-stopped
+      - "4000"  # Allow access to port 4000 within the Docker network
+    restart: unless-stopped  # Restart unless explicitly stopped
 
+  # Frontend service
   frontend:
     build:
-      context: ./client
+      context: ./client  # Path to the frontend Dockerfile
     ports:
-      - "8080:80"
+      - "8080:80"  # Map host port 8080 to container port 80
     depends_on:
-      - server
-    restart: unless-stopped
+      - server  # Start the backend before the frontend
+    restart: unless-stopped  # Restart unless explicitly stopped
